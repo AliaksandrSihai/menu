@@ -1,0 +1,43 @@
+
+{% extends 'menu/base.html' %}
+{% block content %}
+{% load static %}
+    <style>
+    .accordion-item {
+
+
+    background-color: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    }
+    .accordion-body {
+        color: white;
+    }
+    </style>
+{% for object in object_list %}
+    <h2 class="accordion-header">
+        <button class="accordion-button btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{ object.pk }}" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            {{ object.name }}
+        </button>
+    </h2>
+
+    <div id="panelsStayOpen-collapse{{ object.pk }}" class="accordion-collapse collapse show">
+        {% for position in object.main.all %}
+            <div class="accordion-body">
+                <a class="nav-link" href="{% url 'menu:menu' object.pk %}" aria-current="page">{{ position.title }}</a>
+            </div>
+        {% endfor %}
+        {% for position in object.soup.all %}
+            <div class="accordion-body">
+                <a class="nav-link" href="{% url 'menu:menu' object.pk %}" aria-current="page">{{ position.title }}</a>
+            </div>
+        {% endfor %}
+        {% for position in object.dessert.all %}
+            <div class="accordion-body">
+                <a class="nav-link" href="{% url 'menu:menu' object.pk %}" aria-current="page">{{ position.title }}</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+{% endblock content %}

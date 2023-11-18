@@ -1,0 +1,52 @@
+{% extends 'menu/base.html' %}
+{% block content %}
+{% load static %}
+  <style>
+
+        .card {
+
+            background-image: url('{% static 'image/3.jpg' %}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 20px; /* Можете указать необходимый отступ */
+        }
+        .card-body {
+             color: rgb(0,0,0);
+
+        }
+    </style>
+{% for  object in object_list %}
+            <div class="card">
+                <div class="card_header">
+                    <h3 class="card-title pricing-card-title">{{ object.name }}</h3>
+                </div>
+                {% for position in object.main.all %}
+                <div class="card-body">
+                    <h4 class="card-title pricing-card-title">{{ position.title }}</h4>
+                    <h4 class="card-title pricing-card-title">{{ position.description }}</h4>
+                    <h4 class="card-title pricing-card-title">{{ position.ingredients }}</h4>
+                    <h4 class="card-title pricing-card-title">{{ position.allergens }}</h4>
+                </div>
+                {% endfor %}
+                {% for position in object.soup.all %}
+                <div class="card-body">
+                    <h4 class="card-title pricing-card-title">{{ position.title }}</h4>
+                    <h4 class="card-title pricing-card-title">{{ position.description }}</h4>
+                    <h4 class="card-title pricing-card-title">{{ position.ingredients }}</h4>
+                    <h4 class="card-title pricing-card-title">{{ position.allergens }}</h4>
+                </div>
+                {% endfor %}
+                {% for position in object.dessert.all %}
+                <div class="card-body">
+                    <h4 class="card-title pricing-card-title">{{ position.title }}</h4>
+                    <h4 class="card-title pricing-card-title">{{ position.description }}</h4>
+                    <h4 class="card-title pricing-card-title">{{ position.ingredients }}</h4>
+                    <h4 class="card-title pricing-card-title">{{ position.allergens }}</h4>
+                </div>
+                {% endfor %}
+
+            </div>
+{% endfor %}
+
+
+{% endblock content %}
